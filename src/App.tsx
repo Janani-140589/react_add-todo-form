@@ -5,8 +5,6 @@ import usersFromServer from './api/users';
 import todosFromServer from './api/todos';
 import { useState } from 'react';
 
-export const todoListFromServer = [...todosFromServer];
-
 export function getUserById(userid: number): {
   id: number;
   name: string;
@@ -16,9 +14,9 @@ export function getUserById(userid: number): {
   return usersFromServer.find(x => x.id === userid)!;
 }
 
-export const todoList = todoListFromServer.map(todo => ({
+export const todoList = todosFromServer.map(todo => ({
   ...todo,
-  user: getUserById(todo.id),
+  user: getUserById(todo.userId),
 }));
 
 export const users = usersFromServer.map(u => ({
